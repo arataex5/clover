@@ -1,0 +1,19 @@
+{
+  "name": "言葉のクローバー",
+  "short_name": "クローバー",
+  "description": "ヒントの言葉から4枚のカードを当てる連想ゲーム。みんなで・ひとりでCPUと遊べます。",
+  "lang": "ja",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#eef5e8",
+  "theme_color": "#3f8f2f",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
