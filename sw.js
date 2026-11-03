@@ -1,5 +1,5 @@
 /* 言葉のクローバー service worker — オフラインで遊べるようにアプリ一式をキャッシュします */
-const CACHE = 'kotoba-clover-571dc372df';
+const CACHE = 'kotoba-clover-8bf409b2c5';
 const ASSETS = [
   './',
   './index.html',

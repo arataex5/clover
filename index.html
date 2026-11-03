@@ -34,7 +34,7 @@ button{font-family:inherit;cursor:pointer}
 
 /* header */
 .bar{display:flex;align-items:center;gap:8px;min-height:40px;margin-bottom:4px}
-.bar h2{flex:1;font-size:17px;margin:0;line-height:1.3}
+.bar h2{flex:1;font-size:17px;margin:0;line-height:1.3;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .chip{font-size:13px;padding:4px 10px;border-radius:999px;background:var(--panel);border:1px solid var(--line);color:var(--sub);white-space:nowrap}
 .icon-btn{border:1px solid var(--line);background:var(--panel);color:var(--sub);border-radius:10px;padding:6px 12px;font-size:16px;line-height:1}
 .note{font-size:13px;color:var(--sub);line-height:1.6;margin:8px 2px;text-align:center}
@@ -205,6 +205,53 @@ button{font-family:inherit;cursor:pointer}
 .update span{flex:1}
 .update button{border:none;background:var(--leaf);color:#fff;font-weight:700;border-radius:10px;padding:8px 14px;font-size:14px}
 
+/* online */
+.seg.mode button{font-size:14px;padding:11px 2px}
+.chip .dot,.mem .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.dot.on{background:#2fbf5b}.dot.off{background:#c9c2b4}
+.flabel{display:block;font-size:13px;font-weight:700;color:var(--sub);margin-bottom:6px}
+.finput{width:100%;font-size:16px;padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);min-width:0}
+.finput:focus{outline:2px solid var(--accent);border-color:transparent}
+.joinrow{display:flex;gap:8px}
+.joinrow .finput{flex:1;letter-spacing:.2em;font-weight:700;text-align:center}
+.joinrow .btn{width:auto;padding:12px 20px}
+.or{text-align:center;margin:16px 0 10px;font-size:12px;color:var(--sub);display:flex;align-items:center;gap:8px}
+.or:before,.or:after{content:'';flex:1;border-top:1px solid var(--line)}
+.err{color:var(--ng);font-size:13px;font-weight:700;margin:10px 0 0;text-align:center}
+.roomid{text-align:center}
+.roomid small{display:block;color:var(--sub);font-size:12px}
+.roomid b{display:block;font-size:40px;letter-spacing:.18em;margin:2px 0 10px;color:var(--leaf)}
+.share{display:flex;gap:6px}
+.share button{flex:1;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:9px 2px;font-size:13px;font-weight:700}
+.members{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.mem{display:flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px 12px}
+.mem.off{opacity:.6}
+.mem .nm{flex:1;font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mem .nm em{font-style:normal;font-size:11px;color:var(--leaf);border:1px solid var(--leaf);border-radius:999px;padding:0 6px;margin-left:6px;font-weight:700}
+.mem .st{font-size:12px;color:var(--sub);white-space:nowrap}
+.mini{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:9px;padding:5px 9px;font-size:12px;font-weight:700;margin-left:auto}
+.sec-title .mini{font-size:11px}
+.onet{position:fixed;top:0;left:0;right:0;z-index:28;background:#ef9f27;color:#fff;font-size:13px;font-weight:700;text-align:center;padding:calc(6px + env(safe-area-inset-top)) 10px 6px}
+.spin{display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;margin-right:6px;vertical-align:-2px;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.ochat-btn{position:fixed;right:14px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:22;width:52px;height:52px;border-radius:50%;border:none;background:var(--leaf);color:#fff;font-size:22px;box-shadow:0 3px 10px rgba(0,0,0,.25)}
+.ochat-btn i{position:absolute;top:-3px;right:-3px;min-width:20px;height:20px;border-radius:10px;background:var(--ng);font-size:11px;font-style:normal;font-weight:800;line-height:20px;padding:0 5px}
+.ochat{position:fixed;left:0;right:0;bottom:0;z-index:24;max-width:480px;margin:0 auto;background:var(--panel);border-radius:18px 18px 0 0;box-shadow:0 -4px 20px rgba(0,0,0,.2);
+  transform:translateY(105%);transition:transform .25s;display:flex;flex-direction:column;height:55vh;padding-bottom:env(safe-area-inset-bottom)}
+.ochat:not(.open){visibility:hidden;transition:transform .25s,visibility 0s .25s}
+.ochat.open{transform:none}
+body.online #app{padding-bottom:calc(90px + env(safe-area-inset-bottom))}
+body.online .update{bottom:calc(76px + env(safe-area-inset-bottom))}
+.ochat-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line)}
+.ochat-head button{border:none;background:none;color:var(--sub);font-size:14px}
+.ochat-log{flex:1;overflow:auto;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.cm-row small{font-size:11px;color:var(--sub)}
+.cm-row p{margin:2px 0 0;background:var(--bg);border-radius:4px 12px 12px 12px;padding:7px 10px;font-size:14px;display:inline-block;max-width:85%;word-break:break-word}
+.cm-row.me{text-align:right}.cm-row.me p{background:var(--okbg);border-radius:12px 4px 12px 12px;text-align:left}
+.ochat-form{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line)}
+.ochat-form input{flex:1;font-size:16px;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);min-width:0}
+.ochat-form button{border:none;background:var(--leaf);color:#fff;font-weight:700;border-radius:10px;padding:0 14px}
+
 /* modal */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;z-index:20}
 .modal[hidden]{display:none}
@@ -332,7 +379,7 @@ let setupN = 4, setupNames = [], setupLoaded = false, lastKey = '', popCard = -1
 function store(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 function load(k) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
 function drop(k) { try { localStorage.removeItem(k); } catch (e) {} }
-function save() { if (S) store(KEY, S); }
+function save() { if (S && S.mode !== 'online') store(KEY, S); }
 function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 const rnd = n => Math.floor(Math.random() * n);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
@@ -4085,7 +4132,7 @@ function cardHTML(card, r, o = {}) {
     const dim = o.outer && !o.outer.includes(p);
     h += `<span class="w ${POS[p]}${dim ? ' dim' : ''}">${esc(wordAt(card, r, p))}</span>`;
   }
-  if (o.rot) h += `<button class="rot" data-act="rot" data-card="${o.ci}" aria-label="回転">↻</button>`;
+  if (o.rot) h += `<button class="rot" data-act="${o.rotAct || 'rot'}" data-card="${o.ci}" aria-label="回転">↻</button>`;
   if (o.badge) h += `<span class="badge">${o.badge}</span>`;
   return h + '</div>';
 }
@@ -4109,9 +4156,10 @@ function vSetup() {
   }
   const saved = load(KEY);
   const canResume = saved && saved.phase && saved.phase !== 'end' && saved.phase !== 'setup';
-  const solo = setupMode === 'solo';
+  const solo = setupMode === 'solo', online = setupMode === 'online';
   let body;
-  if (!solo) {
+  if (online) body = onlineSetupHTML();
+  else if (!solo) {
     let ins = '';
     for (let i = 0; i < setupN; i++) ins += `<input class="name" data-i="${i}" maxlength="10" placeholder="プレイヤー${i + 1}" value="${esc(setupNames[i] || '')}" autocomplete="off">`;
     body = `<div class="panel">
@@ -4138,7 +4186,7 @@ function vSetup() {
   </div>`;
   return `<div class="hero"><div class="logo">🍀</div><h1>言葉のクローバー</h1><p>ヒントの言葉から4枚のカードを当てるゲーム</p></div>
   ${canResume ? `<div class="btns"><button class="btn warm" data-act="resume">前回の続きから遊ぶ</button></div>` : ''}
-  <div class="seg mode"><button class="${solo ? '' : 'on'}" data-act="mode" data-v="multi">👥 みんなで</button><button class="${solo ? 'on' : ''}" data-act="mode" data-v="solo">👤 ひとりで</button></div>
+  <div class="seg mode"><button class="${!solo && !online ? 'on' : ''}" data-act="mode" data-v="multi">👥 みんなで</button><button class="${solo ? 'on' : ''}" data-act="mode" data-v="solo">👤 ひとりで</button><button class="${online ? 'on' : ''}" data-act="mode" data-v="online">🌐 オンライン</button></div>
   ${body}${tools}`;
 }
 function vPass() {
@@ -4423,9 +4471,10 @@ function render() {
   const ph = S ? S.phase : screen;
   $app.innerHTML = VIEWS[ph]();
   if (ph === 'write') bindWrite();
+  if (ph === 'owrite') bindOWrite();
   if (ph === 'manage') bindManage();
   if (S && S.recycled && !S.recycledShown) { S.recycledShown = true; toast('使えるカードが足りないので、古い使用済みカードも混ぜています'); }
-  const key = ph + ':' + (S ? (ph === 'review' ? S.rv : S.cur) : '');
+  const key = ph + ':' + (S ? ((ph === 'review' || ph === 'oreview') ? S.rv : S.cur) : '');
   if (key !== lastKey) { window.scrollTo(0, 0); lastKey = key; }
   popCard = -1;
 }
@@ -4469,6 +4518,8 @@ const RULES = `<h3>🍀 遊び方</h3>
 <ul><li><b>CPUのヒントを当てる</b>：CPUがヒントを考え、あなたが推理します</li><li><b>CPUに当てさせる</b>：あなたがヒントを書き、CPUが推理します</li><li><b>交互にやる</b>：ラウンドごとに役割を交代</li></ul>
 <p>CPUは内蔵の連想辞書で考えます。毎回ゆらぎを入れているので、同じカードでも違うヒントになることがあります。あなたのヒントは答え合わせのあとにCPUが覚えて、次から理解しやすくなります。</p>
 <p><b>ダジャレ系のヒントもOK</b>：同音異義語（例：しょうゆ＋金色 →「はっこう」＝発酵／発光）や、2つの意味を持つ言葉（例：影＋サル →「日光」＝日の光／地名）。漢字が違う同音異義語は<b>ひらがなで書く</b>と、CPUは「わざわざひらがな＝漢字が2つあるのかも」と考えます。CPU自身もときどきこの手のヒントを出します。</p>
+<h4>🌐 オンライン</h4>
+<ul><li>ホストが「ルームを作る」→ 5桁のルームIDを、IDのコピー・招待URL・共有ボタンで送ります</li><li>参加する人はルームIDを入力（招待URLを開くと自動で入ります）</li><li>ヒントは全員が同時に書き、推理は推理する全員が「OK」すると回答します。チャットも使えます（出題者は推理中は話せません）</li><li>通信が切れても、同じルームIDを入れ直せば同じ席・同じ状態で戻れます。ホストが抜けたら残った人が自動でホストを引き継ぎます</li><li>カードはホストの端末の設定で配り、出題した時点でホスト側で使用済みになります（ホストが交代したら新ホスト側で使用済みに）</li></ul>
 <h4>🗂 カード管理</h4>
 <p>カードは1枚に4つの単語が書かれた固定カード（${DECK.length}枚）です。「使用済みカードを出さない」をONにすると、一度出たカードは戻すまで出ません。タイトルの「カード管理」で、使用済みの確認・戻す・苦手なカードの除外ができます。</p>
 <h4>操作</h4>
@@ -4612,6 +4663,880 @@ document.addEventListener('click', e => {
     case 'sw-update': if (waitingSW) { updateRequested = true; waitingSW.postMessage({type: 'SKIP_WAITING'}); } break;
   }
 });
+
+/* =====================================================================
+ * オンライン対戦（PeerJS / WebRTC）
+ * ---------------------------------------------------------------------
+ *  ・ルームID（5桁）＝ホストが持つ「入口」の PeerJS ID。参加者はここへ接続する。
+ *  ・参加後は全員が全員と直接つながる（フルメッシュ）。
+ *  ・ゲームの状態はホストが持ち、変更のたびに全員へ丸ごと配る。
+ *    → 全員が最新の状態を持っているので、ホストが抜けても続きから再開できる。
+ *  ・ホストが切れたら、生き残りのうち参加順が一番早い人が新ホストになり、
+ *    同じルームIDの「入口」を引き継ぐ。抜けた人もルームIDを入れ直せば同じ席に戻れる。
+ *  ・本人の見分けはルームごとのトークン（端末に保存）。PeerJS の ID が変わっても同じ人として扱う。
+ *  ・使用済みカードはホストの端末の設定・記録だけを使う（出題した時点で使用済み）。
+ * ===================================================================== */
+const OQ = (() => { try { return new URLSearchParams(location.search); } catch (e) { return new URLSearchParams(''); } })();
+const PEERJS_URL = OQ.get('peerjs') || 'https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js';
+const PEER_OPTS = (() => {
+  const v = OQ.get('peerserver'); if (!v) return {debug: 0};
+  const [host, port] = v.split(':');
+  return {host, port: +port || 9000, path: '/', secure: false, debug: 0, config: {iceServers: []}};   // テスト用ローカルサーバー
+})();
+const NS = 'kotobaclover1-';
+const doorId = r => NS + r;
+const ONAME_KEY = 'kc-online-name', ACTIVE_KEY = 'kc-active-room';
+const tokKey = r => 'kc-token-' + r, snapKey = r => 'kc-snap-' + r, draftKey = (gid, t) => 'kc-draft-' + gid + '-' + t;
+const genToken = () => 't' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+const genRoomId = () => String(10000 + Math.floor(Math.random() * 90000));
+const validRoom = r => /^\d{5}$/.test(String(r || '').trim());
+const HB_MS = 3000, LINK_TIMEOUT = 10000;
+
+const OL = {
+  active: false, room: null, roomId: null, token: null, name: '',
+  peer: null, door: null, links: new Map(), doorConns: new Map(), hostDoor: null, pending: new Map(),
+  status: 'idle', hb: null, bag: [], electing: false, rejoining: false, expectHostBy: 0, welcomed: false,
+  sel: null, rv: -1, chatOpen: false, seenChat: 0, joinErr: '', nameDraft: null, roomDraft: '', lastPhaseKey: ''
+};
+const isHostOL = () => !!(OL.room && OL.room.hostToken === OL.token);
+const newer = (a, b) => !b || a.epoch > b.epoch || (a.epoch === b.epoch && a.ver > b.ver);
+function sendRaw(conn, m) { try { if (conn && conn.open) conn.send(typeof m === 'string' ? m : JSON.stringify(m)); } catch (e) {} }
+function openConn(x) { return x && x.conn && x.conn.open ? x.conn : null; }
+
+/* ---------- PeerJS の読み込み・Peer 作成 ---------- */
+let peerjsPromise = null;
+function loadPeerJS() {
+  if (window.Peer) return Promise.resolve();
+  if (peerjsPromise) return peerjsPromise;
+  peerjsPromise = new Promise((res, rej) => {
+    const s = document.createElement('script'); s.src = PEERJS_URL; s.async = true;
+    s.onload = () => res();
+    s.onerror = () => { peerjsPromise = null; rej(Object.assign(new Error('load'), {type: 'load'})); };
+    document.head.appendChild(s);
+  });
+  return peerjsPromise;
+}
+function makePeer(id) {
+  return new Promise((res, rej) => {
+    let p, done = false;
+    try { p = id ? new window.Peer(id, PEER_OPTS) : new window.Peer(PEER_OPTS); } catch (e) { rej(e); return; }
+    const fin = (err) => { if (done) return; done = true; clearTimeout(t); if (err) { try { p.destroy(); } catch (e) {} rej(err); } else res(p); };
+    const t = setTimeout(() => fin(Object.assign(new Error('timeout'), {type: 'timeout'})), 12000);
+    p.on('open', () => fin(null));
+    p.on('error', err => fin(err || new Error('peer')));
+  });
+}
+function pendingFailFromError(err) {      // 「その相手はいない」エラーを、どの接続の失敗か突き合わせる
+  const msg = String(err && err.message || '');
+  OL.pending.forEach((fail, target) => { if (msg.includes(target)) fail(err); });
+}
+async function ensureMainPeer() {
+  if (OL.peer && !OL.peer.destroyed) {
+    if (OL.peer.disconnected) { try { OL.peer.reconnect(); } catch (e) {} }
+    return OL.peer;
+  }
+  const p = await makePeer(null);
+  OL.peer = p;
+  p.on('connection', conn => acceptMesh(conn));
+  p.on('disconnected', () => setTimeout(() => { if (OL.peer === p && !p.destroyed && p.disconnected) { try { p.reconnect(); } catch (e) {} } }, 1500));
+  p.on('error', err => { if (err && err.type === 'peer-unavailable') pendingFailFromError(err); });
+  p.on('close', () => { if (OL.peer === p) OL.peer = null; });
+  return p;
+}
+
+/* ---------- 接続（メッシュ） ---------- */
+function acceptMesh(conn) {
+  const md = conn.metadata || {};
+  if (md.probe) { conn.on('open', () => setTimeout(() => { try { conn.close(); } catch (e) {} }, 300)); return; }
+  wireLink(conn, md.token || null);
+}
+function wireLink(conn, token) {
+  conn.on('open', () => {
+    const old = OL.links.get(conn.peer);
+    OL.links.set(conn.peer, {conn, token, last: Date.now()});
+    if (old && old.conn !== conn) { try { old.conn.close(); } catch (e) {} }
+    onLinkUp(conn.peer, token);
+  });
+  conn.on('data', raw => onData(conn, raw));
+  conn.on('close', () => dropLink(conn));
+  conn.on('error', () => dropLink(conn));
+}
+function dropLink(conn) {
+  const L = OL.links.get(conn.peer);
+  if (!L || L.conn !== conn) return;
+  OL.links.delete(conn.peer);
+  try { conn.close(); } catch (e) {}
+  onLinkDown(conn.peer, L.token);
+}
+function connectMesh() {
+  if (!OL.room || !OL.peer || OL.peer.destroyed) return;
+  Object.entries(OL.room.members).forEach(([tok, m]) => {
+    if (tok === OL.token || !m.online || !m.peerId || OL.links.has(m.peerId)) return;
+    try { const c = OL.peer.connect(m.peerId, {reliable: true, metadata: {token: OL.token}}); wireLink(c, tok); } catch (e) {}
+  });
+}
+function hostConn() {
+  if (!OL.room) return null;
+  const h = OL.room.members[OL.room.hostToken];
+  return (h && openConn(OL.links.get(h.peerId))) || openConn(OL.hostDoor);
+}
+const hostReachable = () => isHostOL() || !!hostConn();
+
+/* ---------- 受信 ---------- */
+function onData(conn, raw) {
+  let m; try { m = typeof raw === 'string' ? JSON.parse(raw) : raw; } catch (e) { return; }
+  const now = Date.now();
+  const L = OL.links.get(conn.peer); if (L && L.conn === conn) L.last = now;
+  const D = OL.doorConns.get(conn.peer); if (D && D.conn === conn) D.last = now;
+  if (OL.hostDoor && OL.hostDoor.conn === conn) OL.hostDoor.last = now;
+  if (!m || m.t === 'ping') return;
+  if (m.t === 'state') onState(m.room);
+  else if (m.t === 'welcome') onWelcome(m, conn);
+  else if (m.t === 'act') { if (isHostOL()) hostAct(m.token, m.a); }
+  else if (m.t === 'hello') { if (isHostOL()) hostHello(conn, m); }
+  else if (m.t === 'adopt') { if (isHostOL() && m.room && newer(m.room, OL.room)) hostAdopt(m.room); }
+  else if (m.t === 'bye') { if (L && L.conn === conn) dropLink(conn); else { try { conn.close(); } catch (e) {} } }
+  else if (m.t === 'regroup') { if (!isHostOL()) rejoin(); }
+}
+function onState(R) {
+  if (!R || (OL.room && R.id !== OL.room.id)) return;
+  if (OL.room && !newer(R, OL.room)) return;
+  if (isHostOL() && R.hostToken !== OL.token) demote();
+  OL.room = R;
+  if (OL.status !== 'online' && hostReachable()) setStatus('online');
+  afterState();
+}
+
+/* ---------- 生存確認（ハートビート） ---------- */
+function startHB() {
+  if (OL.hb) return;
+  OL.hb = setInterval(() => {
+    if (!OL.active) return;
+    const now = Date.now(), ping = JSON.stringify({t: 'ping'});
+    OL.links.forEach(L => sendRaw(L.conn, ping));
+    OL.doorConns.forEach(D => sendRaw(D.conn, ping));
+    if (OL.hostDoor) sendRaw(OL.hostDoor.conn, ping);
+    OL.links.forEach(L => { if (now - L.last > LINK_TIMEOUT) dropLink(L.conn); });
+    OL.doorConns.forEach((D, pid) => { if (now - D.last > LINK_TIMEOUT + 5000 || !D.conn.open) { try { D.conn.close(); } catch (e) {} OL.doorConns.delete(pid); } });
+    if (OL.hostDoor && (now - OL.hostDoor.last > LINK_TIMEOUT || !OL.hostDoor.conn.open)) { try { OL.hostDoor.conn.close(); } catch (e) {} OL.hostDoor = null; }
+    [OL.peer, OL.door].forEach(p => { if (p && !p.destroyed && p.disconnected) { try { p.reconnect(); } catch (e) {} } });
+    if (!OL.room || OL.rejoining) return;
+    if (!isHostOL() && !hostReachable() && !OL.electing) {
+      if (OL.status === 'waiting-host') { if (now > OL.expectHostBy) rejoin(); }
+      else onHostLost();
+    }
+    if (isHostOL() && !OL.door && !OL.claiming) claimDoor();
+  }, HB_MS);
+}
+document.addEventListener('visibilitychange', () => {   // スリープ復帰直後は相手を切断扱いしない
+  if (document.visibilityState !== 'visible' || !OL.active) return;
+  const now = Date.now(), ping = JSON.stringify({t: 'ping'});
+  OL.links.forEach(L => { L.last = now; sendRaw(L.conn, ping); });
+  if (OL.hostDoor) { OL.hostDoor.last = now; sendRaw(OL.hostDoor.conn, ping); }
+  [OL.peer, OL.door].forEach(p => { if (p && !p.destroyed && p.disconnected) { try { p.reconnect(); } catch (e) {} } });
+});
+
+/* ---------- ルームの入口（ルームID）にいる相手の確認 ---------- */
+function probeDoor(rid, ms) {
+  return new Promise(res => {
+    if (!OL.peer || OL.peer.destroyed || OL.peer.disconnected) { res(null); return; }   // 自分がオフライン：判定できない
+    let done = false, c = null;
+    const target = doorId(rid);
+    const fin = v => { if (done) return; done = true; clearTimeout(t); OL.pending.delete(target); if (c) { try { c.close(); } catch (e) {} } res(v); };
+    const t = setTimeout(() => fin(false), ms);
+    OL.pending.set(target, () => fin(false));
+    try { c = OL.peer.connect(target, {reliable: true, metadata: {probe: true}}); c.on('open', () => fin(true)); c.on('error', () => fin(false)); } catch (e) { fin(false); }
+  });
+}
+
+/* ---------- ホスト側 ---------- */
+function setDoor(d) {
+  OL.door = d;
+  d.on('connection', conn => acceptDoor(conn));
+  d.on('disconnected', () => setTimeout(() => { if (OL.door === d && !d.destroyed && d.disconnected) { try { d.reconnect(); } catch (e) {} } }, 1500));
+  d.on('error', () => {});
+  d.on('close', () => { if (OL.door === d) OL.door = null; });
+}
+function acceptDoor(conn) {
+  const md = conn.metadata || {};
+  if (md.probe) { conn.on('open', () => setTimeout(() => { try { conn.close(); } catch (e) {} }, 300)); return; }
+  conn.on('open', () => OL.doorConns.set(conn.peer, {conn, last: Date.now()}));
+  conn.on('data', raw => onData(conn, raw));
+  conn.on('close', () => { const D = OL.doorConns.get(conn.peer); if (D && D.conn === conn) OL.doorConns.delete(conn.peer); });
+}
+function deckInfo() { return {host: OL.name, excl: !!settings.excludeUsed, avail: availableKeys().length, total: DECK.length}; }
+function bump() { OL.room.ver++; OL.room.deck = deckInfo(); }
+function broadcastState() {
+  const msg = JSON.stringify({t: 'state', room: OL.room}), sent = new Set();
+  OL.links.forEach((L, pid) => { if (L.conn.open) { sendRaw(L.conn, msg); sent.add(pid); } });
+  OL.doorConns.forEach((D, pid) => { if (!sent.has(pid)) sendRaw(D.conn, msg); });
+  afterState();
+}
+function hostCommit() { bump(); hostCheckOk(); broadcastState(); }
+function hostHello(conn, m) {
+  const R = OL.room; let tok = m.token, mem = tok && R.members[tok];
+  const name = String(m.name || '').trim().slice(0, 10);
+  if (!mem) {
+    tok = genToken();
+    mem = R.members[tok] = {name: name || `プレイヤー${R.nextJoin + 1}`, joinOrder: R.nextJoin++, online: true, peerId: conn.peer};
+  } else {
+    mem.peerId = conn.peer; mem.online = true; if (name) mem.name = name;
+    if (R.game && R.game.P[tok]) R.game.P[tok].name = mem.name;
+  }
+  bump();
+  sendRaw(conn, {t: 'welcome', token: tok, room: R});
+  hostCheckOk(); broadcastState();
+}
+function hostAdopt(R2) {            // 戻ってきた人の方が新しい状態を持っていたら、それを引き継ぐ
+  const keepMembers = OL.room.members;
+  R2.hostToken = OL.token; R2.epoch = Math.max(R2.epoch, OL.room.epoch) + 1; R2.ver = 1;
+  Object.entries(keepMembers).forEach(([t, m]) => { if (R2.members[t]) { R2.members[t].online = m.online; R2.members[t].peerId = m.peerId; } else R2.members[t] = m; });
+  R2.nextJoin = Math.max(R2.nextJoin || 0, OL.room.nextJoin || 0);
+  OL.room = R2;
+  if (R2.game) markUsed(gameCards(R2.game));
+  hostCommit();
+}
+function onLinkUp(pid, token) {
+  if (isHostOL()) {
+    const m = token && OL.room.members[token];
+    if (m && (!m.online || m.peerId !== pid)) { m.online = true; m.peerId = pid; hostCommit(); }
+  } else if (OL.status !== 'online' && hostReachable() && !OL.rejoining) { setStatus('online'); afterState(); }
+}
+function onLinkDown(pid, token) {
+  if (!OL.room) return;
+  if (isHostOL()) {
+    const m = token && OL.room.members[token];
+    if (m && m.peerId === pid && m.online) { m.online = false; hostCommit(); }
+  } else if (token === OL.room.hostToken && !hostReachable()) onHostLost();
+}
+
+/* ---------- ホストが切れたとき（引き継ぎ） ---------- */
+function onHostLost() {
+  if (OL.electing || isHostOL() || !OL.room || OL.rejoining) return;
+  OL.electing = true; setStatus('host-lost');
+  const rid = OL.roomId;
+  probeDoor(rid, 3500).then(alive => {
+    OL.electing = false;
+    if (!OL.room || OL.roomId !== rid || isHostOL() || hostReachable()) { if (hostReachable()) setStatus('online'); return; }
+    if (alive) { rejoin(); return; }          // ホストは生きていた（自分の接続が一時的に切れただけ）→ 入り直す
+    const R = OL.room, cands = [];
+    Object.entries(R.members).forEach(([tok, m]) => {
+      if (tok === R.hostToken) return;
+      if (tok === OL.token || (m.peerId && openConn(OL.links.get(m.peerId)))) cands.push([m.joinOrder, tok]);
+    });
+    cands.sort((a, b) => a[0] - b[0]);
+    if (cands.length && cands[0][1] === OL.token) becomeHost('migrate');
+    else { OL.expectHostBy = Date.now() + 15000; setStatus('waiting-host'); }
+  });
+}
+function becomeHost(reason) {
+  const R = OL.room, old = R.members[R.hostToken];
+  R.hostToken = OL.token; R.epoch++; R.ver = 0;
+  Object.entries(R.members).forEach(([t, m]) => { m.online = t === OL.token || !!(m.peerId && openConn(OL.links.get(m.peerId))); });
+  R.members[OL.token].peerId = OL.peer ? OL.peer.id : null;
+  OL.bag = [];
+  if (R.game) markUsed(gameCards(R.game));       // 新ホストの端末でも、このゲームのカードを使用済みにする
+  setStatus('online');
+  hostCommit();
+  if (!OL.door) claimDoor();
+  if (reason === 'migrate') toast(`${old ? old.name + 'さん（ホスト）' : 'ホスト'}が切断されたので、あなたがホストになりました`);
+  else if (reason === 'reopen') toast('ルームを再開しました。あなたがホストです');
+}
+async function claimDoor() {
+  if (OL.claiming || (OL.door && !OL.door.destroyed)) return;
+  OL.claiming = true;
+  const rid = OL.roomId;
+  try {
+    for (let i = 0; i < 80; i++) {
+      if (!isHostOL() || OL.roomId !== rid || !OL.active) return;
+      try {
+        const d = await makePeer(doorId(rid));
+        if (!isHostOL() || OL.roomId !== rid || !OL.active) { d.destroy(); return; }
+        setDoor(d); return;
+      } catch (e) {
+        if (e && e.type === 'unavailable-id') {
+          const alive = await probeDoor(rid, 3000);
+          if (alive) { demote(true); return; }     // 入口は別の生きているホストが持っていた → そちらに合流
+        }
+      }
+      await new Promise(r => setTimeout(r, 3000));
+    }
+  } finally { OL.claiming = false; }
+}
+function demote(regroup) {
+  if (OL.door) { try { OL.door.destroy(); } catch (e) {} OL.door = null; }
+  OL.doorConns.forEach(D => { try { D.conn.close(); } catch (e) {} }); OL.doorConns.clear();
+  if (regroup) {
+    const msg = JSON.stringify({t: 'regroup'});
+    OL.links.forEach(L => sendRaw(L.conn, msg));
+    OL.room.hostToken = null;
+    rejoin();
+  }
+}
+
+/* ---------- 参加・再接続 ---------- */
+function joinDoor(rid) {
+  return new Promise((res, rej) => {
+    const target = doorId(rid);
+    let settled = false, conn = null;
+    const fin = (err) => {
+      if (settled) return; settled = true; clearTimeout(t); OL.pending.delete(target);
+      if (err) { if (conn) { try { conn.close(); } catch (e) {} } rej(err); } else res();
+    };
+    const t = setTimeout(() => fin(Object.assign(new Error('timeout'), {type: 'timeout'})), 10000);
+    OL.pending.set(target, err => fin(Object.assign(new Error('unavailable'), {type: 'peer-unavailable'})));
+    OL.welcomed = false;
+    try { conn = OL.peer.connect(target, {reliable: true, metadata: {token: OL.token}}); } catch (e) { fin(e); return; }
+    conn.on('open', () => {
+      OL.hostDoor = {conn, last: Date.now()};
+      const snap = OL.room && OL.room.id === rid ? OL.room : null;
+      sendRaw(conn, {t: 'hello', token: OL.token, name: OL.name, epoch: snap ? snap.epoch : 0, ver: snap ? snap.ver : 0});
+    });
+    conn.on('data', raw => { onData(conn, raw); if (OL.welcomed) fin(null); });
+    conn.on('close', () => { if (OL.hostDoor && OL.hostDoor.conn === conn) OL.hostDoor = null; fin(Object.assign(new Error('closed'), {type: 'closed'})); });
+    conn.on('error', () => fin(Object.assign(new Error('error'), {type: 'error'})));
+  });
+}
+function onWelcome(m, conn) {
+  const rid = OL.roomId, mine = OL.room && OL.room.id === m.room.id ? OL.room : null;
+  OL.token = m.token; storeS(tokKey(rid), m.token);
+  OL.welcomed = true; OL.rejoining = false;
+  OL.room = m.room;
+  if (mine && mine.game && newer(mine, m.room) && (!m.room.game || m.room.game.id === mine.game.id)) sendRaw(conn, {t: 'adopt', room: mine});
+  setStatus('online'); saveActive();
+  connectMesh();
+  afterState();
+}
+async function rejoin() {
+  if (OL.rejoining || !OL.active) return;
+  OL.rejoining = true; setStatus('reconnecting');
+  if (OL.door) { try { OL.door.destroy(); } catch (e) {} OL.door = null; }
+  const rid = OL.roomId; let n = 0, unavail = 0;
+  while (OL.active && OL.roomId === rid && OL.rejoining) {
+    try {
+      await ensureMainPeer();
+      await joinDoor(rid);
+      return;
+    } catch (e) {
+      n++;
+      if (e && e.type === 'peer-unavailable') unavail++;
+      if (unavail >= 2 && OL.room && OL.room.id === rid) {          // 入口に誰もいない → 自分の持っている状態でルームを再開
+        if (await reopenAsHost()) return;
+      }
+      await new Promise(r => setTimeout(r, Math.min(5000, 1200 + n * 400)));
+    }
+  }
+}
+async function reopenAsHost() {
+  try {
+    await ensureMainPeer();
+    const d = await makePeer(doorId(OL.roomId));
+    OL.rejoining = false;
+    setDoor(d);
+    becomeHost('reopen');
+    return true;
+  } catch (e) { return false; }            // 誰かが先に入口を取った → 次の試行で参加者として入る
+}
+
+/* ---------- 開始・終了 ---------- */
+function storeS(k, v) { try { localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v)); } catch (e) {} }
+function loadS(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+function dropS(k) { try { localStorage.removeItem(k); } catch (e) {} }
+function saveActive() { if (OL.roomId) storeS(ACTIVE_KEY, {room: OL.roomId, ts: Date.now()}); }
+function activeRoom() { try { const a = JSON.parse(loadS(ACTIVE_KEY) || 'null'); return a && validRoom(a.room) && Date.now() - a.ts < 24 * 3600e3 ? a.room : null; } catch (e) { return null; } }
+function loadSnap(rid) { try { const s = JSON.parse(loadS(snapKey(rid)) || 'null'); return s && Date.now() - s.ts < 24 * 3600e3 ? s.room : null; } catch (e) { return null; } }
+function enterOnline(rid) {
+  OL.active = true; OL.roomId = rid; OL.sel = null; OL.rv = -1; OL.joinErr = '';
+  OL.name = (OL.nameDraft != null ? OL.nameDraft : (loadS(ONAME_KEY) || '')).trim().slice(0, 10) || 'プレイヤー';
+  storeS(ONAME_KEY, OL.name);
+  S = {mode: 'online', phase: 'oconn'}; render(); renderChat(); startHB();
+}
+function onlineFail(e) {
+  const t = e && e.type;
+  const msg = t === 'load' ? 'オンライン機能を読み込めませんでした（インターネット接続が必要です）'
+    : t === 'peer-unavailable' ? `ルーム ${OL.roomId} が見つかりませんでした。IDを確認してください`
+    : t === 'timeout' ? 'ルームに接続できませんでした（時間切れ）。もう一度お試しください'
+    : 'サーバーに接続できませんでした。通信状況を確認してください';
+  leaveOnline(true); OL.joinErr = msg; render();
+}
+async function onlineCreate() {
+  enterOnline(null);
+  try {
+    await loadPeerJS(); await ensureMainPeer();
+    let d = null, rid = null;
+    for (let i = 0; i < 6 && !d; i++) {
+      rid = genRoomId();
+      try { d = await makePeer(doorId(rid)); } catch (e) { if (!(e && e.type === 'unavailable-id')) throw e; }
+    }
+    if (!d) throw new Error('id');
+    if (!OL.active) { d.destroy(); return; }
+    OL.roomId = rid; OL.token = genToken(); storeS(tokKey(rid), OL.token);
+    OL.room = {id: rid, epoch: 1, ver: 0, hostToken: OL.token, nextJoin: 1, game: null, chat: [],
+      members: {[OL.token]: {name: OL.name, joinOrder: 0, online: true, peerId: OL.peer.id}}};
+    setDoor(d); OL.bag = []; setStatus('online'); saveActive();
+    hostCommit();
+  } catch (e) { onlineFail(e); }
+}
+async function onlineJoin(rid) {
+  enterOnline(rid);
+  OL.token = loadS(tokKey(rid));
+  const snap = loadSnap(rid);
+  OL.room = snap;                                   // 手元の最新状態（ルームを再開するときに使う）
+  if (snap) S.phase = 'oconn';
+  try {
+    await loadPeerJS(); await ensureMainPeer();
+    try { await joinDoor(rid); }
+    catch (e) {
+      if (e && e.type === 'peer-unavailable' && snap && OL.token && snap.members[OL.token]) {
+        if (await reopenAsHost()) return;           // 誰もいないルーム → 自分がホストになって再開
+        await joinDoor(rid);
+      } else if (e && e.type === 'timeout') { await joinDoor(rid); }
+      else throw e;
+    }
+  } catch (e) { onlineFail(e); }
+}
+function leaveOnline(silent) {
+  const bye = JSON.stringify({t: 'bye', token: OL.token});
+  OL.links.forEach(L => sendRaw(L.conn, bye));
+  if (OL.hostDoor) sendRaw(OL.hostDoor.conn, bye);
+  OL.active = false; OL.rejoining = false;
+  setTimeout(() => {
+    OL.links.forEach(L => { try { L.conn.close(); } catch (e) {} }); OL.links.clear();
+    OL.doorConns.forEach(D => { try { D.conn.close(); } catch (e) {} }); OL.doorConns.clear();
+    if (OL.hostDoor) { try { OL.hostDoor.conn.close(); } catch (e) {} OL.hostDoor = null; }
+    [OL.door, OL.peer].forEach(p => { if (p) { try { p.destroy(); } catch (e) {} } });
+    OL.door = null; OL.peer = null;
+  }, 300);
+  if (!silent) dropS(ACTIVE_KEY);
+  OL.room = null; OL.roomId = null; OL.status = 'idle'; OL.pending.clear();
+  S = null; screen = 'setup'; setupMode = 'online';
+  renderChat(); setStatus('idle');
+}
+
+/* ---------- ゲーム進行（ホストだけが実行） ---------- */
+function gameCards(G) { return Object.values(G.P).flatMap(p => p.cards || []); }
+function hostDraw(G) {
+  const ing = new Set(G ? gameCards(G).map(c => c.k) : []);
+  for (let guard = 0; guard < 3; guard++) {
+    while (OL.bag.length) { const k = OL.bag.pop(); if (!ing.has(k) && CARD.has(k)) return {k, w: CARD.get(k).w.slice()}; }
+    let pool = availableKeys().filter(k => !ing.has(k));
+    if (pool.length < 10) {                         // 足りなければ古い使用済みから再利用
+      const rest = DECK.filter(c => !exclMap[c.k] && !ing.has(c.k)).sort((x, y) => (usedMap[x.k] || 0) - (usedMap[y.k] || 0));
+      pool = pool.concat(rest.slice(0, 60).map(c => c.k));
+      if (pool.length < 5) pool = DECK.filter(c => !ing.has(c.k)).map(c => c.k);
+    }
+    OL.bag = shuffle([...new Set(pool)]);
+  }
+  return {k: DECK[0].k, w: DECK[0].w.slice()};
+}
+function dealOL(G, pl) {
+  pl.cards = [];
+  for (let i = 0; i < 5; i++) { const c = hostDraw(G); pl.cards.push(c); }
+  pl.ans = [0, 1, 2, 3].map(() => rnd(4));
+  pl.clues = ['', '', '', '']; pl.done = false;
+  markUsed(pl.cards);                               // 出題した時点で使用済み（ホストの端末）
+}
+function newG() { return {rot: [0, 1, 2, 3, 4].map(() => rnd(4)), where: [-1, -1, -1, -1, -1], order: shuffle([0, 1, 2, 3, 4]), attempt: 1, locked: [false, false, false, false], fb: null, ok: []}; }
+function guessersOL(G) { const w = G.order[G.cur]; return G.order.filter(t => t !== w && OL.room.members[t] && OL.room.members[t].online); }
+function hostCheckOk() {
+  const G = OL.room && OL.room.game; if (!G || G.phase !== 'guess' || G.g.fb) return;
+  const g = G.g;
+  if (![0, 1, 2, 3].every(s => g.where.includes(s)) || !g.ok.length) return;
+  const req = guessersOL(G);
+  if (req.length ? req.every(t => g.ok.includes(t)) : g.ok.length > 0) hostEvaluate(G);
+}
+function hostEvaluate(G) {
+  const g = G.g, pl = G.P[G.order[G.cur]];
+  const ok = [0, 1, 2, 3].map(s => g.where.indexOf(s) === s && g.rot[s] === pl.ans[s]);
+  g.ok = [];
+  if (g.attempt === 1 && ok.every(Boolean)) { pl.score = 6; finishG(G, ok); }
+  else if (g.attempt === 1) g.fb = ok;
+  else { pl.score = ok.filter(Boolean).length; finishG(G, ok); }
+}
+function finishG(G, ok) { const g = G.g, pl = G.P[G.order[G.cur]]; g.fb = ok; pl.guess = {where: g.where.slice(), rot: g.rot.slice(), fb: ok.slice()}; G.phase = 'result'; }
+function maybeStartGuess(G) { if (G.order.every(t => G.P[t].done)) { G.phase = 'guess'; G.cur = 0; G.g = newG(); } }
+function hostAct(tok, a) {
+  const R = OL.room, G = R.game, mem = R.members[tok];
+  if (!mem || !a || typeof a !== 'object') return;
+  const amHostReq = tok === R.hostToken;
+  const inGuess = G && G.phase === 'guess', g = inGuess ? G.g : null, writer = inGuess ? G.order[G.cur] : null;
+  const canPlay = inGuess && tok !== writer && !g.fb;
+  const ci = a.ci | 0, s = a.s | 0;
+  switch (a.t) {
+    case 'name': { const n = String(a.name || '').trim().slice(0, 10); if (!n) return; mem.name = n; if (G && G.P[tok]) G.P[tok].name = n; break; }
+    case 'chat': {
+      const x = String(a.text || '').trim().slice(0, 120); if (!x) return;
+      if (inGuess && tok === writer) return;        // 出題者は推理中は話せない
+      R.chat.push({n: mem.name, x, tk: tok, ts: Date.now()}); if (R.chat.length > 60) R.chat.splice(0, R.chat.length - 60);
+      break;
+    }
+    case 'start': {
+      if (!amHostReq || (G && G.phase !== 'end')) return;
+      const order = Object.entries(R.members).filter(([, m]) => m.online).sort((x, y) => x[1].joinOrder - y[1].joinOrder).map(([t]) => t);
+      if (order.length < 2) return;
+      const NG = {id: genToken(), phase: 'write', order, P: {}, cur: 0, g: null};
+      order.forEach(t => { NG.P[t] = {name: R.members[t].name, cards: [], ans: [], clues: ['', '', '', ''], done: false, rerolled: false, score: null, guess: null}; dealOL(NG, NG.P[t]); });
+      R.game = NG; break;
+    }
+    case 'reroll': { const pl = G && G.phase === 'write' && G.P[tok]; if (!pl || pl.done || pl.rerolled) return; dealOL(G, pl); pl.rerolled = true; break; }
+    case 'clues': {
+      const pl = G && G.phase === 'write' && G.P[tok]; if (!pl || !Array.isArray(a.clues) || a.clues.length !== 4) return;
+      const cl = a.clues.map(x => String(x || '').trim().slice(0, 16)); if (!cl.every(Boolean)) return;
+      pl.clues = cl; pl.done = true; pl.byCpu = false; maybeStartGuess(G); break;
+    }
+    case 'unclues': { const pl = G && G.phase === 'write' && G.P[tok]; if (!pl || !pl.done) return; pl.done = false; break; }
+    case 'cpu-write': {
+      if (!amHostReq || !G || G.phase !== 'write') return;
+      const pl = G.P[a.target]; if (!pl || pl.done || (R.members[a.target] && R.members[a.target].online)) return;
+      const r = AI.writeClues(pl); pl.clues = r.clues; pl.done = true; pl.byCpu = true; maybeStartGuess(G); break;
+    }
+    case 'move': {
+      if (!canPlay || ci < 0 || ci > 4 || s < 0 || s > 3 || g.locked[s]) return;
+      const from = g.where[ci]; if (from >= 0 && g.locked[from]) return;
+      const occ = g.where.indexOf(s); g.where[ci] = s; if (occ >= 0 && occ !== ci) g.where[occ] = from;
+      g.ok = []; break;
+    }
+    case 'tray': { if (!canPlay) return; const w = g.where[ci]; if (w < 0 || g.locked[w]) return; g.where[ci] = -1; g.ok = []; break; }
+    case 'rot': { if (!canPlay || ci < 0 || ci > 4) return; const w = g.where[ci]; if (w >= 0 && g.locked[w]) return; g.rot[ci] = (g.rot[ci] + 1) % 4; g.ok = []; break; }
+    case 'clear': { if (!canPlay) return; g.where = g.where.map(w => (w >= 0 && !g.locked[w]) ? -1 : w); g.ok = []; break; }
+    case 'ok': {
+      if (!inGuess || g.fb || (tok === writer && guessersOL(G).length)) return;
+      if (![0, 1, 2, 3].every(x => g.where.includes(x))) return;
+      const i = g.ok.indexOf(tok); if (i >= 0) g.ok.splice(i, 1); else g.ok.push(tok);
+      break;
+    }
+    case 'retry': {
+      if (!inGuess || !g.fb || g.attempt !== 1 || (tok === writer && guessersOL(G).length)) return;
+      [0, 1, 2, 3].forEach(x => { const c = g.where.indexOf(x); if (g.fb[x]) g.locked[x] = true; else if (c >= 0) g.where[c] = -1; });
+      g.fb = null; g.attempt = 2; g.ok = []; break;
+    }
+    case 'next': {
+      if (!G || G.phase !== 'result') return;
+      G.cur++;
+      if (G.cur < G.order.length) { G.phase = 'guess'; G.g = newG(); } else G.phase = 'end';
+      break;
+    }
+    case 'again': if (!amHostReq || !G || G.phase !== 'end') return; R.game = null; break;
+    case 'abort': if (!amHostReq || !G) return; R.game = null; break;
+    default: return;
+  }
+  hostCommit();
+}
+function sendAct(a) {
+  if (isHostOL()) { hostAct(OL.token, a); return; }
+  const c = hostConn();
+  if (c) sendRaw(c, {t: 'act', token: OL.token, a});
+  else toast('ホストと接続中です。少し待ってからもう一度どうぞ');
+}
+
+/* ---------- 画面 ---------- */
+function myP() { const G = OL.room && OL.room.game; return G && G.P[OL.token]; }
+function olPhase() {
+  const G = OL.room && OL.room.game;
+  if (!OL.room || !OL.welcomed && !isHostOL() && OL.status !== 'online') return 'oconn';
+  if (!G) return 'oroom';
+  if (G.phase === 'end') return OL.rv >= 0 ? 'oreview' : 'oend';
+  return {write: 'owrite', guess: 'oguess', result: 'oresult'}[G.phase] || 'oroom';
+}
+function olDerive() {
+  const G = OL.room && OL.room.game;
+  const players = G ? G.order.map(t => Object.assign({token: t}, G.P[t], {plain: t === OL.token, name: t === OL.token ? 'あなた' : G.P[t].name})) : [];
+  S = {mode: 'online', phase: olPhase(), players, cur: G ? G.cur : 0, g: G ? G.g : null, rv: OL.rv};
+}
+function afterState() {
+  if (!OL.active) return;
+  if (OL.room) {
+    storeS(snapKey(OL.room.id), {room: OL.room, ts: Date.now()});
+    const G = OL.room.game;
+    if (G && G.phase === 'end') dropS(draftKey(G.id, OL.token));
+  }
+  const prev = S && S.phase;
+  olDerive();
+  const G = OL.room && OL.room.game, key = S.phase + ':' + (G ? G.id + ':' + G.cur + ':' + (G.g ? G.g.attempt : '') : '');
+  // ヒント入力中は入力欄を作り直さない（キーボードが閉じないように）
+  const typing = document.activeElement && document.activeElement.classList && document.activeElement.classList.contains('clue');
+  if (S.phase === 'owrite' && prev === 'owrite' && key === OL.lastPhaseKey && typing && myP() && !myP().done) updateWriteProgress();
+  else render();
+  if (key !== OL.lastPhaseKey) { OL.sel = null; OL.lastPhaseKey = key; }
+  renderChat();
+}
+function setStatus(st) {
+  OL.status = st;
+  let b = document.getElementById('onet');
+  const txt = {reconnecting: '接続が切れました。ルームに再接続しています…', 'host-lost': 'ホストとの接続を確認しています…', 'waiting-host': '新しいホストに切り替えています…'}[st];
+  if (!txt || !OL.active) { if (b) b.remove(); return; }
+  if (!b) { b = document.createElement('div'); b.id = 'onet'; b.className = 'onet'; document.body.appendChild(b); }
+  b.innerHTML = `<i class="spin"></i>${txt}`;
+}
+const roomUrl = rid => { const u = new URL(location.href); u.search = ''; u.hash = ''; u.searchParams.set('room', rid); OQ.get('peerserver') && u.searchParams.set('peerserver', OQ.get('peerserver')); OQ.get('peerjs') && u.searchParams.set('peerjs', OQ.get('peerjs')); return u.toString(); };
+async function copyText(t, done) {
+  try { await navigator.clipboard.writeText(t); toast(done); return; } catch (e) {}
+  const ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); toast(done); } catch (e) { toast('コピーできませんでした'); }
+  ta.remove();
+}
+function shareBox(rid) {
+  return `<div class="panel roomid"><small>ルームID</small><b>${rid}</b>
+    <div class="share"><button data-act="o-copy-id">📋 IDをコピー</button><button data-act="o-copy-url">🔗 URLをコピー</button>${navigator.share ? '<button data-act="o-share">📤 共有</button>' : ''}</div></div>`;
+}
+function obar(title) {
+  const R = OL.room, rid = OL.roomId || (R && R.id) || '';
+  return `<div class="bar"><h2>${title}</h2><span class="chip"><i class="dot ${OL.status === 'online' ? 'on' : 'off'}"></i>${rid ? 'ルーム' + rid : '接続中'}</span><button class="icon-btn" data-act="o-menu" aria-label="メニュー">≡</button></div>`;
+}
+function memberRows(showDone) {
+  const R = OL.room, G = R.game;
+  return Object.entries(R.members).sort((a, b) => a[1].joinOrder - b[1].joinOrder).map(([t, m]) => {
+    const p = G && G.P[t];
+    const state = showDone && p ? (p.done ? (p.byCpu ? '🤖 CPU代筆' : '✅ 完成') : '✍️ 作成中') : (G && !p ? '👀 観戦' : '');
+    const cpuBtn = showDone && isHostOL() && p && !p.done && !m.online ? `<button class="mini" data-act="o-cpu" data-t="${t}">CPUに代筆させる</button>` : '';
+    return `<div class="mem ${m.online ? '' : 'off'}"><i class="dot ${m.online ? 'on' : 'off'}"></i><span class="nm">${esc(m.name)}${t === OL.token ? '<em>あなた</em>' : ''}${t === R.hostToken ? ' 👑' : ''}</span><span class="st">${m.online ? state : '切断中'}</span>${cpuBtn}</div>`;
+  }).join('');
+}
+function vOConn() {
+  return obar('オンライン') + `<div class="pass"><div class="logo">🌐</div><p class="big">${OL.roomId ? `ルーム ${OL.roomId} に` : 'ルームを'}${OL.roomId ? '接続しています…' : '作っています…'}</p>
+    <p class="note">相手の通信状況によっては少し時間がかかります</p><div class="btns"><button class="btn sub" data-act="o-cancel">やめる</button></div></div>`;
+}
+function vORoom() {
+  const R = OL.room, n = Object.values(R.members).filter(m => m.online).length, d = R.deck || {};
+  return obar('オンライン') + shareBox(R.id) +
+    `<div class="sec-title">👥 メンバー（${n}人）<button class="mini" data-act="o-rename">名前を変更</button></div><div class="members">${memberRows(false)}</div>
+    <p class="note">カードは<b>ホスト（${esc(d.host || '')}）</b>の端末の設定で配ります（使用済み除外${d.excl ? 'ON' : 'OFF'}・使える${d.avail || 0}枚）。<br>出題した時点でホスト側で使用済みになります。</p>
+    ${isHostOL() ? `<div class="btns"><button class="btn" data-act="o-start" ${n >= 2 ? '' : 'disabled'}>ゲーム開始（${n}人）</button></div>${n < 2 ? '<p class="note">あと1人以上の参加を待っています。ルームIDかURLを送ってね</p>' : ''}`
+      : '<p class="msg">ホストがゲームを始めるのを待っています…</p>'}
+    <div class="btns"><button class="btn sub" data-act="o-leave">ルームを出る</button></div>`;
+}
+function draftOf(G) {
+  let d = null; try { d = JSON.parse(loadS(draftKey(G.id, OL.token)) || 'null'); } catch (e) {}
+  const pl = G.P[OL.token];
+  if (!d || d.cards !== pl.cards.map(c => c.k).join()) d = {cards: pl.cards.map(c => c.k).join(), clues: pl.clues.slice()};
+  return d;
+}
+function updateWriteProgress() {
+  const el = document.getElementById('oprog'); if (!el || !OL.room.game) return;
+  const G = OL.room.game; el.textContent = `完成 ${G.order.filter(t => G.P[t].done).length}/${G.order.length}人`;
+}
+function vOWrite() {
+  const R = OL.room, G = R.game, pl = G.P[OL.token];
+  const done = G.order.filter(t => G.P[t].done).length;
+  if (!pl) return obar('ヒント作成中') + `<div class="pass"><div class="logo">👀</div><p class="big">観戦中です</p><p class="note">みんながヒントを書いています。推理の時間になったら一緒に考えられます</p></div><div class="members">${memberRows(true)}</div>`;
+  const cells = [0, 1, 2, 3].map(s => cardHTML(pl.cards[s], pl.ans[s], {outer: SLOT_OUTER[s]}));
+  if (pl.done) {
+    return obar('ヒント完成！') + clover(cells, pl.clues) +
+      `<p class="msg">みんなのヒントを待っています（${done}/${G.order.length}人）</p><div class="members">${memberRows(true)}</div>
+      <div class="btns">${pl.byCpu ? '' : '<button class="btn sub" data-act="o-unclues">ヒントを書き直す</button>'}</div>`;
+  }
+  const d = draftOf(G);
+  let rows = '';
+  LEAVES.forEach((L, i) => {
+    const a = wordAt(pl.cards[L.a], pl.ans[L.a], L.p), b = wordAt(pl.cards[L.b], pl.ans[L.b], L.p);
+    rows += `<label class="clue-row"><span class="lab">${LEAF_NAME[i]}</span><span class="pair">${esc(a)}<i>＋</i>${esc(b)}</span>
+      <input class="clue" data-i="${i}" maxlength="16" enterkeyhint="${i < 3 ? 'next' : 'done'}" value="${esc(d.clues[i] || '')}" placeholder="ヒント" autocomplete="off" autocorrect="off" spellcheck="false"></label>`;
+  });
+  return obar('あなたのクローバー') + `<p class="note" id="oprog">完成 ${done}/${G.order.length}人</p>` +
+    clover(cells, d.clues, {leafAct: true}) +
+    `<p class="note">葉っぱをはさむ2つの単語をつなぐ言葉を、1つずつ書こう。ほかの人には見えません。</p>` + rows +
+    `<div class="btns"><button class="btn" data-act="o-submit" id="doneBtn" ${d.clues.every(c => String(c || '').trim()) ? '' : 'disabled'}>ヒント完成！</button>
+     <button class="btn sub" data-act="o-reroll" ${pl.rerolled ? 'disabled' : ''}>${pl.rerolled ? '引き直し済み' : 'カードを引き直す（1回だけ）'}</button></div>`;
+}
+function bindOWrite() {
+  const G = OL.room && OL.room.game; if (!G) return;
+  const inputs = [...$app.querySelectorAll('input.clue')], btn = document.getElementById('doneBtn');
+  if (!inputs.length) return;
+  const d = draftOf(G);
+  inputs.forEach((inp, i) => {
+    inp.addEventListener('input', () => {
+      d.clues[i] = inp.value; storeS(draftKey(G.id, OL.token), d);
+      const lf = document.getElementById('leaf' + i), t = inp.value.trim();
+      lf.textContent = t || '？'; lf.className = `leaf ${LEAF_CLS[i]} ${leafSize(t)} ${t ? '' : 'empty'} on`;
+      btn.disabled = !d.clues.every(c => String(c || '').trim());
+    });
+    inp.addEventListener('focus', () => document.getElementById('leaf' + i).classList.add('on'));
+    inp.addEventListener('blur', () => { document.getElementById('leaf' + i).classList.remove('on'); setTimeout(() => { if (!document.activeElement || !document.activeElement.classList.contains('clue')) afterStateSoft(); }, 50); });
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.isComposing) { e.preventDefault(); if (inputs[i + 1]) inputs[i + 1].focus(); else inp.blur(); } });
+  });
+}
+function afterStateSoft() { if (OL.active && S && S.phase === 'owrite') { const p = myP(); if (p && p.done) render(); } }
+function vOGuess() {
+  const R = OL.room, G = R.game, g = G.g, wt = G.order[G.cur], pl = G.P[wt], amW = wt === OL.token;
+  const play = !amW && !g.fb;
+  const sel = OL.sel, selOnBoard = sel !== null && g.where[sel] >= 0;
+  const cells = [0, 1, 2, 3].map(s => {
+    const ci = g.where.indexOf(s);
+    if (ci < 0) return `<div class="slot ${play && sel !== null ? 'target' : ''}" ${play ? `data-act="o-slot" data-slot="${s}"` : ''}>＋</div>`;
+    const cls = []; let badge = '';
+    if (sel === ci) cls.push('sel');
+    if (g.fb) { cls.push(g.fb[s] ? 'ok' : 'ng'); badge = g.fb[s] ? '✓' : '✗'; }
+    else if (g.locked[s]) { cls.push('ok'); badge = '✓'; }
+    return cardHTML(pl.cards[ci], g.rot[ci], {outer: SLOT_OUTER[s], rot: play && !g.locked[s], rotAct: 'o-rot', ci, cls: cls.join(' '), badge, attrs: play ? `data-act="o-pick" data-card="${ci}"` : ''});
+  });
+  const tray = g.order.filter(ci => g.where[ci] === -1);
+  const trayHTML = tray.length ? tray.map(ci => cardHTML(pl.cards[ci], g.rot[ci], {rot: play, rotAct: 'o-rot', ci, cls: sel === ci ? 'sel' : '', attrs: play ? `data-act="o-pick" data-card="${ci}"` : ''})).join('')
+    : '<span class="tray-empty">すべて置きました</span>';
+  const req = guessersOL(G), full = [0, 1, 2, 3].every(s => g.where.includes(s)), mine = g.ok.includes(OL.token);
+  const okNames = g.ok.map(t => R.members[t] ? (t === OL.token ? 'あなた' : R.members[t].name) : '').filter(Boolean).join('、');
+  let tail;
+  if (g.fb) {
+    const k = g.fb.filter(Boolean).length;
+    tail = `<p class="msg">${k}枚正解！<br>✗ のカードは手札に戻ります。</p>` +
+      (amW && req.length ? '<p class="note">みんなが2回目に挑戦します</p>' : '<div class="btns"><button class="btn warm" data-act="o-retry">2回目に挑戦する</button></div>');
+  } else if (amW && req.length) {
+    tail = `<p class="msg">あなたのクローバーをみんなが推理中…</p><p class="note">出題者はしゃべらずに見守ってね（推理中はチャットも使えません）</p>${okNames ? `<p class="note">OK：${esc(okNames)}</p>` : ''}`;
+  } else {
+    tail = `<div class="btns"><button class="btn ${mine ? 'sub' : ''}" data-act="o-ok" ${full ? '' : 'disabled'}>${mine ? 'OKを取り消す' : (g.attempt === 1 ? 'これでOK' : 'これで最終回答')}（${g.ok.length}/${Math.max(1, req.length)}）</button>
+      <button class="btn sub" data-act="o-clear">置いたカードを手札に戻す</button></div>
+      <p class="note">${req.length > 1 ? '推理する全員がOKすると回答します。' : ''}${okNames ? `OK：${esc(okNames)}` : ''}</p>`;
+  }
+  const hint = !play ? '' : sel !== null ? (selOnBoard ? '置きたい場所をタップ（手札の枠をタップで戻す）' : '置きたい場所をタップ') : 'カードをタップ → 置きたい場所をタップ。↻ で回転。みんなの画面に反映されます';
+  return obar(amW ? 'あなたのクローバー' : `${esc(pl.name)}さんのクローバー`) +
+    `<p class="note">クローバー ${G.cur + 1}/${G.order.length}・${g.attempt === 1 ? '1回目' : '2回目（ラスト）'}・得点 ${G.order.reduce((a, t) => a + (G.P[t].score || 0), 0)}</p>` +
+    clover(cells, pl.clues) + (hint ? `<p class="note">${hint}</p>` : '') +
+    (g.fb ? '' : `<div class="tray-label"><span>手札（おとり1枚入り）</span></div><div class="tray ${play && selOnBoard ? 'target' : ''}" ${play ? 'data-act="o-tray"' : ''}>${trayHTML}</div>`) + tail;
+}
+function vOResult() {
+  const G = OL.room.game, pl = S.players[S.cur], last = G.cur === G.order.length - 1;
+  return obar(`${pl.plain ? 'あなた' : esc(pl.name) + 'さん'}のクローバー`) + scoreHead(pl.score) + reviewHTML(pl) +
+    `<div class="btns"><button class="btn" data-act="o-next">${last ? '最終結果を見る' : '次のクローバーへ'}</button></div>`;
+}
+function vOEnd() {
+  const G = OL.room.game, t = G.order.reduce((a, k) => a + (G.P[k].score || 0), 0), max = G.order.length * 6, pct = Math.round(t / max * 100);
+  const rank = pct === 100 ? '伝説の四つ葉！ 完璧なチームです 🍀' : pct >= 80 ? '息ぴったり！ 最高のチームワーク' : pct >= 60 ? 'いい感じ！ 言葉が通じ合っています' : pct >= 40 ? 'まずまず。次はもっと通じ合えるはず' : 'まだまだ伸びしろたっぷり！';
+  const list = S.players.map((p, i) => `<button data-act="o-review" data-i="${i}"><span>${p.plain ? 'あなた' : esc(p.name) + 'さん'}のクローバー</span><span><b>${p.score}点</b><small>答え合わせ ›</small></span></button>`).join('');
+  return obar('最終結果') + `<div class="total"><div class="logo">🏆</div><div class="num">${t}<small> / ${max}点</small></div><div class="rank">${rank}</div></div>
+    <div class="list">${list}</div>
+    <div class="btns">${isHostOL() ? '<button class="btn" data-act="o-again">ロビーに戻って次のゲームへ</button>' : '<p class="msg">ホストが次のゲームを準備するのを待っています</p>'}
+    <button class="btn sub" data-act="o-leave">ルームを出る</button></div>`;
+}
+function vOReview() {
+  const pl = S.players[OL.rv];
+  return obar(`${pl.plain ? 'あなた' : esc(pl.name) + 'さん'}のクローバー`) + scoreHead(pl.score) + reviewHTML(pl) + `<div class="btns"><button class="btn sub" data-act="o-back-end">最終結果に戻る</button></div>`;
+}
+function onlineSetupHTML() {
+  const act = activeRoom(), name = OL.nameDraft != null ? OL.nameDraft : (loadS(ONAME_KEY) || '');
+  return `${act ? `<div class="btns"><button class="btn warm" data-act="o-rejoin" data-r="${act}">ルーム ${act} に戻る</button></div><p class="note">前と同じ席・同じ状態で戻れます</p>` : ''}
+  <div class="panel">
+    <label class="flabel">あなたの名前</label><input id="oname" class="finput" maxlength="10" placeholder="なまえ" value="${esc(name)}" autocomplete="off">
+    <div class="btns"><button class="btn" data-act="o-create">ルームを作る（ホスト）</button></div>
+    <div class="or"><span>または ルームIDで参加</span></div>
+    <div class="joinrow"><input id="oroomid" class="finput" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="5桁のルームID" value="${esc(OL.roomDraft || '')}" autocomplete="off"><button class="btn" data-act="o-join">参加</button></div>
+    ${OL.joinErr ? `<p class="err">${esc(OL.joinErr)}</p>` : ''}
+  </div>
+  <div class="btns"><button class="btn sub" data-act="rules">遊び方</button></div>
+  <p class="note">招待はルームIDかURLを送るだけ。通信が切れても同じルームIDで同じ席に戻れます。<br>ホストが抜けても、残った人が自動でホストを引き継ぎます。</p>`;
+}
+
+/* ---------- チャット ---------- */
+function renderChat() {
+  let btn = document.getElementById('ochatBtn'), box = document.getElementById('ochat');
+  const R = OL.active && OL.room;
+  document.body.classList.toggle('online', !!OL.active);
+  if (!R || S && S.phase === 'oconn') { if (btn) btn.remove(); if (box) box.remove(); return; }
+  if (!btn) {
+    btn = document.createElement('button'); btn.id = 'ochatBtn'; btn.className = 'ochat-btn'; btn.dataset.act = 'o-chat'; document.body.appendChild(btn);
+    box = document.createElement('div'); box.id = 'ochat'; box.className = 'ochat';
+    box.innerHTML = `<div class="ochat-head"><b>💬 チャット</b><button data-act="o-chat">閉じる</button></div><div class="ochat-log" id="ochatLog"></div>
+      <form class="ochat-form" id="ochatForm"><input id="ochatIn" maxlength="120" placeholder="メッセージ" autocomplete="off"><button>送信</button></form>`;
+    document.body.appendChild(box);
+    box.querySelector('#ochatForm').addEventListener('submit', e => {
+      e.preventDefault(); const inp = document.getElementById('ochatIn'), x = inp.value.trim();
+      if (!x) return; sendAct({t: 'chat', text: x}); inp.value = '';
+    });
+  }
+  const G = R.game, muted = G && G.phase === 'guess' && G.order[G.cur] === OL.token && guessersOL(G).length > 0;
+  const n = R.chat.length; if (OL.chatOpen) OL.seenChat = n;
+  const unread = Math.max(0, n - OL.seenChat);
+  btn.innerHTML = `💬${unread ? `<i>${unread}</i>` : ''}`;
+  box.classList.toggle('open', OL.chatOpen);
+  const log = document.getElementById('ochatLog');
+  log.innerHTML = R.chat.length ? R.chat.map(c => `<div class="cm-row ${c.tk === OL.token ? 'me' : ''}"><small>${esc(c.n)}</small><p>${esc(c.x)}</p></div>`).join('') : '<p class="note">まだメッセージはありません</p>';
+  log.scrollTop = log.scrollHeight;
+  const inp = document.getElementById('ochatIn'); inp.disabled = !!muted; inp.placeholder = muted ? '出題者は推理中は話せません' : 'メッセージ';
+}
+
+/* ---------- 操作 ---------- */
+function olPick(ci) {
+  const G = OL.room.game, g = G.g; if (g.fb) return;
+  const w = g.where[ci]; if (w >= 0 && g.locked[w]) return;
+  if (OL.sel === null) OL.sel = ci;
+  else if (OL.sel === ci) OL.sel = null;
+  else if (w >= 0) { sendAct({t: 'move', ci: OL.sel, s: w}); OL.sel = null; }
+  else if (g.where[OL.sel] >= 0) { sendAct({t: 'move', ci, s: g.where[OL.sel]}); OL.sel = null; }
+  else OL.sel = ci;
+  render();
+}
+document.addEventListener('input', e => {
+  if (e.target.id === 'oname') OL.nameDraft = e.target.value;
+  if (e.target.id === 'oroomid') { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 5); OL.roomDraft = e.target.value; }
+});
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]'); if (!el || el.disabled) return;
+  const A = el.dataset.act; if (!A.startsWith('o-')) return;
+  switch (A) {
+    case 'o-create': onlineCreate(); break;
+    case 'o-join': {
+      const rid = (OL.roomDraft || '').trim();
+      if (!validRoom(rid)) { OL.joinErr = 'ルームIDは5桁の数字です'; render(); break; }
+      onlineJoin(rid); break;
+    }
+    case 'o-rejoin': onlineJoin(el.dataset.r); break;
+    case 'o-cancel': leaveOnline(true); render(); break;
+    case 'o-leave':
+      if (confirm(isHostOL() && Object.values(OL.room.members).filter(m => m.online).length > 1 ? 'ルームを出ますか？ ホストはほかの人に引き継がれます。' : 'ルームを出ますか？（同じルームIDでまた戻れます）')) { closeModal(); leaveOnline(false); render(); }
+      break;
+    case 'o-menu':
+      openModal(`<h3>メニュー</h3><div class="btns">
+        ${OL.room ? '<button class="btn sub" data-act="o-copy-url">🔗 招待URLをコピー</button>' : ''}
+        <button class="btn sub" data-act="rules">遊び方</button>
+        ${isHostOL() && OL.room && OL.room.game && OL.room.game.phase !== 'end' ? '<button class="btn sub" data-act="o-abort">ゲームを中止してロビーへ</button>' : ''}
+        <button class="btn sub" data-act="o-leave">ルームを出る</button><button class="btn" data-act="close-modal">閉じる</button></div>`);
+      break;
+    case 'o-abort': if (confirm('ゲームを中止してロビーに戻りますか？')) { closeModal(); sendAct({t: 'abort'}); } break;
+    case 'o-copy-id': copyText(OL.room.id, `ルームID ${OL.room.id} をコピーしました`); break;
+    case 'o-copy-url': closeModal(); copyText(roomUrl(OL.room.id), '招待URLをコピーしました'); break;
+    case 'o-share': navigator.share({title: '言葉のクローバー', text: `言葉のクローバーで遊ぼう！ ルームID：${OL.room.id}`, url: roomUrl(OL.room.id)}).catch(() => {}); break;
+    case 'o-rename': {
+      const n = prompt('名前（10文字まで）', OL.name); if (n == null) break;
+      const v = n.trim().slice(0, 10); if (!v) break;
+      OL.name = v; storeS(ONAME_KEY, v); sendAct({t: 'name', name: v}); break;
+    }
+    case 'o-start': sendAct({t: 'start'}); break;
+    case 'o-submit': {
+      const G = OL.room.game, d = draftOf(G), cl = d.clues.map(c => String(c || '').trim());
+      if (!cl.every(Boolean)) break;
+      const pl = G.P[OL.token], vis = [];
+      for (let s = 0; s < 4; s++) SLOT_OUTER[s].forEach(p => vis.push(wordAt(pl.cards[s], pl.ans[s], p)));
+      const bad = cl.filter(c => vis.some(w => c.includes(w)));
+      if (bad.length && !confirm(`「${bad.join('」「')}」にカードの単語が含まれています。このまま進みますか？`)) break;
+      sendAct({t: 'clues', clues: cl}); break;
+    }
+    case 'o-unclues': {
+      const G = OL.room.game; storeS(draftKey(G.id, OL.token), {cards: G.P[OL.token].cards.map(c => c.k).join(), clues: G.P[OL.token].clues.slice()});
+      sendAct({t: 'unclues'}); break;
+    }
+    case 'o-reroll': if (confirm('4枚のカードを引き直しますか？（書いたヒントは消えます）')) { dropS(draftKey(OL.room.game.id, OL.token)); sendAct({t: 'reroll'}); } break;
+    case 'o-cpu': sendAct({t: 'cpu-write', target: el.dataset.t}); break;
+    case 'o-pick': olPick(+el.dataset.card); break;
+    case 'o-slot': if (OL.sel !== null) { sendAct({t: 'move', ci: OL.sel, s: +el.dataset.slot}); OL.sel = null; render(); } break;
+    case 'o-tray': { const g = OL.room.game.g; if (OL.sel !== null && g.where[OL.sel] >= 0) { sendAct({t: 'tray', ci: OL.sel}); OL.sel = null; render(); } break; }
+    case 'o-rot': e.stopPropagation(); sendAct({t: 'rot', ci: +el.dataset.card}); break;
+    case 'o-clear': sendAct({t: 'clear'}); OL.sel = null; break;
+    case 'o-ok': sendAct({t: 'ok'}); break;
+    case 'o-retry': sendAct({t: 'retry'}); break;
+    case 'o-next': sendAct({t: 'next'}); break;
+    case 'o-again': sendAct({t: 'again'}); OL.rv = -1; break;
+    case 'o-review': OL.rv = +el.dataset.i; viewTab = 'ans'; olDerive(); render(); break;
+    case 'o-back-end': OL.rv = -1; olDerive(); render(); break;
+    case 'o-chat': OL.chatOpen = !OL.chatOpen; renderChat(); if (OL.chatOpen) setTimeout(() => { const i = document.getElementById('ochatIn'); if (i && !i.disabled) i.focus(); }, 50); break;
+  }
+});
+Object.assign(VIEWS, {oconn: vOConn, oroom: vORoom, owrite: vOWrite, oguess: vOGuess, oresult: vOResult, oend: vOEnd, oreview: vOReview});
+// ?room=12345 で開いたらオンラインの参加画面へ
+(() => {
+  const r = OQ.get('room');
+  if (validRoom(r)) {
+    setupMode = 'online'; OL.roomDraft = r;
+    try { const u = new URL(location.href); u.searchParams.delete('room'); history.replaceState(null, '', u.toString()); } catch (e) {}
+  }
+})();
 
 render();
 </script>
